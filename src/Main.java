@@ -18,20 +18,21 @@ public class Main {
 
 
     public static void guessStart() {
-        System.out.print("Enter Your Guess: ");
-        guess = x.nextInt();
-        attempts++;
+        while (true) {
+            System.out.print("Enter Your Guess: ");
+            guess = x.nextInt();
+            attempts++;
 
-        if (calculatePercentage(guess) == -1) {
-            System.out.println("Correct! You Guessed It In " + attempts + " Tries!");
-            retrycheck();
-            return;
+            if (calculatePercentage(guess) == -1) {
+                System.out.println("Correct! You Guessed It In " + attempts + " Tries!");
+                retrycheck();
+                break;
+            }
         }
-        guessStart();
     }
 
     public static int calculatePercentage(final int guess) {
-        if (numberToGuess == 0) return 0; // avoid divide by zero
+        if (numberToGuess == 0) return 0;
 
         int percentage = 100 - (int) ((Math.abs(guess - numberToGuess) / (double) numberToGuess) * 100);
 
