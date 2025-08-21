@@ -56,7 +56,7 @@ public class Main {
 
             if (choice != 'y') {
                 System.out.println("Thanks For Playing!");
-                break; // exit the main loop
+                break;
             }
         }
 
