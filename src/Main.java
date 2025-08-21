@@ -22,17 +22,37 @@ public class Main {
         guess = x.nextInt();
         attempts++;
 
-        if (guess < numberToGuess) {
-            System.out.println("Low! Try Again.");
-        } else if (guess > numberToGuess) {
-            System.out.println("High! Try Again.");
-        } else {
+        if (calculatePercentage(guess) == -1) {
             System.out.println("Correct! You Guessed It In " + attempts + " Tries!");
             retrycheck();
             return;
         }
         guessStart();
     }
+
+    public static int calculatePercentage(final int guess) {
+        if (numberToGuess == 0) return 0; // avoid divide by zero
+
+        int percentage = 100 - (int) ((Math.abs(guess - numberToGuess) / (double) numberToGuess) * 100);
+
+        if (percentage < 0) percentage = 0;
+        if (percentage > 100) percentage = 100;
+
+        if (percentage == 100) {
+            return -1;
+        } else if (percentage >= 90) {
+            System.out.println("Very close!");
+        } else if (percentage >= 75) {
+            System.out.println("Close!");
+        } else if (percentage >= 50) {
+            System.out.println("Not too far.");
+        } else {
+            System.out.println("Way off!");
+        }
+
+        return percentage;
+    }
+
 
     public static void retrycheck() {
         System.out.print("Do You Want To Play Again? (y/n): ");
